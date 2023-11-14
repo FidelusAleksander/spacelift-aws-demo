@@ -14,10 +14,6 @@ resource "aws_dynamodb_table" "ddb_table" {
     type = "S"
   }
 
-  server_side_encryption {
-    enabled = true
-  }
-
   point_in_time_recovery {
     enabled = true
   }
