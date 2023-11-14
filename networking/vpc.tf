@@ -1,16 +1,12 @@
-resource "aws_vpc" "example" {
-  cidr_block = "10.0.0.0/16"
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
 
-  tags = {
-    Name = "spacelift-vpc"
-  }
-}
+  name = "spacelift-demo-vpc"
+  cidr = "10.0.0.0/16"
 
-resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.example.id
-  cidr_block = "10.0.1.0/24"
+  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
-  tags = {
-    Name = "spacelift-public-subnet"
-  }
+  enable_nat_gateway = false
 }
