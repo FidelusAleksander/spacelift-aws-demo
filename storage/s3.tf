@@ -17,3 +17,7 @@ resource "aws_s3_bucket_versioning" "this" {
     status = "Enabled"
   }
 }
+
+resource "aws_s3_bucket" "bucket2" {
+  bucket = "fidel-spacelift-demo-2"
+}
